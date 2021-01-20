@@ -1,0 +1,46 @@
+.grid-container {
+  display: inline-block;
+  background: #bbada0;
+  padding: 10px;
+  position: relative;
+}
+
+.grid-row {
+  margin-bottom: 6px;
+
+  &:last-of-type {
+    margin: 0;
+  }
+}
+
+.grid-cell {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  background: rgba(238, 228, 218, 0.35);
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 10px;
+  left: 10px;
+  background: red;
+  animation: newItem .23s;
+  transition: left .1s, top .1s;
+
+  .item-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 50px;
+    color: #ffffff;
+  }
+}
