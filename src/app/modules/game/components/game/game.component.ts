@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Item } from '../../models/item';
+import { GameService } from '../../services/game.service';
 
 const colorMap: {[k: number]: string} = {
   2: '#a6c1ed',
@@ -23,71 +24,14 @@ const colorMap: {[k: number]: string} = {
 export class GameComponent implements OnInit {
 
   keyEventCodeMap: {[type: string]: string} = {
-    ArrowRight: 'ArrowRight',
-    ArrowLeft: 'ArrowLeft',
-    ArrowUp: 'ArrowUp',
-    ArrowDown: 'ArrowDown',
+    ArrowRight: 'right',
+    ArrowLeft: 'left',
+    ArrowUp: 'up',
+    ArrowDown: 'down',
   }
 
-  items: Item[] = [
-    {
-      value: 2,
-      row: 1,
-      col: 1,
-    },
-    {
-      value: 4,
-      row: 1,
-      col: 2,
-    },
-    {
-      value: 8,
-      row: 1,
-      col: 3,
-    },
-    {
-      value: 16,
-      row: 1,
-      col: 4,
-    },
-    {
-      value: 32,
-      row: 2,
-      col: 1,
-    },
-    {
-      value: 64,
-      row: 2,
-      col: 2,
-    },
-    {
-      value: 128,
-      row: 2,
-      col: 3,
-    },
-    {
-      value: 256,
-      row: 2,
-      col: 4,
-    },
-    {
-      value: 512,
-      row: 3,
-      col: 1,
-    },
-    {
-      value: 1024,
-      row: 3,
-      col: 2,
-    },
-    {
-      value: 2048,
-      row: 3,
-      col: 3,
-    },
-  ]
 
-  constructor() { }
+  constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
   }
@@ -108,10 +52,8 @@ export class GameComponent implements OnInit {
   onKeyup(event: KeyboardEvent){
 
     if(this.keyEventCodeMap[event.code]) {
-      console.log(this.keyEventCodeMap[event.code])
+      this.gameService[this.keyEventCodeMap[event.code]]();
     }
-
-
   }
 
 }
